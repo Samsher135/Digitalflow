@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script>
+        am4core.useTheme(am4themes_dark);
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+
+
+        var data = [];
+        var value = 50;
+        for(let i = 0; i < 300; i++){
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        date.setDate(i);
+        value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        data.push({date:date, value: value});
+        }
+
+        chart.data = data;
+
+        // Create axes
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 60;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+        // Create series
+        var series = chart.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.dateX = "date";
+        series.tooltipText = "{value}"
+
+        series.tooltip.pointerOrientation = "vertical";
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.snapToSeries = series;
+        chart.cursor.xAxis = dateAxis;
+
+        //chart.scrollbarY = new am4core.Scrollbar();
+        chart.scrollbarX = new am4core.Scrollbar();
+
+        /*Fuel Consumed*/
+        am4core.useTheme(am4themes_dark);
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart1 = am4core.create("chartdiv1", am4charts.XYChart);
+
+
+
+        var data = [];
+        var value = 50;
+        for(let i = 0; i < 300; i++){
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        date.setDate(i);
+        value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        data.push({date:date, value: value});
+        }
+
+        chart1.data = data;
+
+        // Create axes
+        var dateAxis = chart1.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 60;
+
+        var valueAxis = chart1.yAxes.push(new am4charts.ValueAxis());
+
+        // Create series
+        var series = chart1.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.dateX = "date";
+        series.tooltipText = "{value}"
+
+        series.tooltip.pointerOrientation = "vertical";
+
+        chart1.cursor = new am4charts.XYCursor();
+        chart1.cursor.snapToSeries = series;
+        chart1.cursor.xAxis = dateAxis;
+
+        //chart.scrollbarY = new am4core.Scrollbar();
+        chart1.scrollbarX = new am4core.Scrollbar();
+
+        /*MAF Sensor Air Flow Rate*/
+        am4core.useTheme(am4themes_dark);
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart2 = am4core.create("chartdiv2", am4charts.XYChart);
+
+
+
+        var data = [];
+        var value = 50;
+        for(let i = 0; i < 300; i++){
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        date.setDate(i);
+        value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        data.push({date:date, value: value});
+        }
+
+        chart2.data = data;
+
+        // Create axes
+        var dateAxis = chart2.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 60;
+
+        var valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
+
+        // Create series
+        var series = chart2.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.dateX = "date";
+        series.tooltipText = "{value}"
+
+        series.tooltip.pointerOrientation = "vertical";
+
+        chart2.cursor = new am4charts.XYCursor();
+        chart2.cursor.snapToSeries = series;
+        chart2.cursor.xAxis = dateAxis;
+
+        //chart.scrollbarY = new am4core.Scrollbar();
+        chart2.scrollbarX = new am4core.Scrollbar();
+    </script>
+    <script>
+      function myMap() {
+      var mapProp= {
+      center:new google.maps.LatLng(51.508742,-0.120850),
+      zoom:5,
+      };
+      var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      }
+    </script>
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiTtSggaV5VadGlafc5HoysfdRAV_khLY&callback=myMap"></script>
+  </body>
+</html>
